@@ -18,5 +18,13 @@ class ServerView
 		require_once('templates/server.php');
 		// print_r($servers);
 	}
+
+	public function addform(){
+		require_once('templates/add_server.php');
+	}
+
+	public function editform($oldIP){
+		require_once('templates/edit_server.php');
+	}
 }
  ?>

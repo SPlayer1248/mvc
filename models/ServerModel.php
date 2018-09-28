@@ -39,12 +39,21 @@ class ServerModel extends Database
 		return $result;
 	}
 
-	public function edit($ip, $owner){
+	public function edit($oldIP, $newIP, $owner){
 		$conn = $this->getConnection();
-		$sql = "UPDATE `servers` SET `ip`='$ip' WHERE `owner`='$owner'";
+		$sql = "UPDATE `servers` SET `ip`='$newIP' WHERE `ip`='$oldIP'";
+		echo $sql;
 		$result=$this->execute($sql);
 
 		return $result;
+	}
+
+	public function delete($ip, $owner) {
+		$conn = $this->getConnection();
+		$sql = "DELETE FROM `servers` WHERE `ip`='$ip'";
+		$result=$this->execute($sql);
+
+		return $result;	
 	}
 }
 ?>
