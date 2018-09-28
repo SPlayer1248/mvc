@@ -6,11 +6,11 @@
 class ResultView
 {
 	
-	public function showAllUsers($users)
+	public function showAllReports($reports)
 	{
 		require_once('templates/result.php');
-		echo 'all users';
-		print_r($users);
+		echo 'all servers';
+		print_r($reports);
 	}
 
 	public function formRegister(){

@@ -3,13 +3,12 @@
 	<title>Results</title>
 </head>
 <body>
-<?php foreach ($users as $user):?> 
-	<div><?php echo $user['username'] ?></div>
-	<div><?php if($user['admin']){
-		echo 'admin';
-	}else{
-		echo 'user';
-	} ?></div>
+<?php foreach ($reports as $report):?> 
+	<div><?php echo $report['ip'] ?></div>
+	<div><?php echo $report['hostname'] ?></div>
+	<div><?php echo $report['osname'] ?></div>
+	<div><?php echo $report['open_ports'] ?></div>
+	<div><?php echo $report['filtered_ports'] ?></div>
 	<div>---------------------------</div>
 <?php endforeach; ?>
 </body>

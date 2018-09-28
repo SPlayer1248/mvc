@@ -1,22 +1,41 @@
 <?php 
+session_start();
+define('PATH_CONTROLLER',__DIR__.'/controllers/');
+define('PATH_APPLICATION',__DIR__.'/site');
 
-$action = $_GET['action'];
+$controller = isset($_GET['controller']) ? ucfirst(strtolower($_GET['controller'])).'Controller' : 'UserController' ;
 
-include('controllers/ResultController.php');
-$resultController = new ResultController();
+$action = isset($_GET['action']) ? $_GET['action'] : 'login';
 
-if($action == 'list'){
-	$resultController->getResult();	
-}
+require_once(PATH_CONTROLLER.$controller.'.php');
+$controller = new $controller();
+$controller->$action();
 
-if($action == 'add'){
-	$resultController->formRegister();	
-}
+// $resultController = new ResultController();
+// require_once('controllers/UserController.php');
+// $userController = new UserController();
+// $userController->$action();
 
-if($action == 'doAdd'){
+// if($action == 'list'){
+// 	$resultController->getResult();	
+// }
 
-	$resultController->doAdd();
-}
+// if($action == 'add'){
+// 	$resultController->formRegister();	
+// }
+
+// if($action == 'doAdd'){
+
+// 	$resultController->doAdd();
+// }
+
+// if($action == 'login'){
+// 	$userController->formLogin();
+// }
+
+// if($action == 'doLogin'){
+// 	$userController->login();
+// }
 
 // https://www.youtube.com/watch?v=H2L-x-jjM8Y&index=12&list=PLR8iDMjPjgZ1zwjFApMJQknRla1nvEioy
 

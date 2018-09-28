@@ -4,11 +4,11 @@ class ResultController {
 	public function getResult(){
 		require_once('models/ResultModel.php');
 		$resultModel = new ResultModel();
-		$users = $resultModel->getResult();
+		$reports = $resultModel->getAllResults();
 
 		require_once('views/ResultView.php');
 		$resultView = new ResultView();
-		$resultView->showAllUsers($users);
+		$resultView->showAllReports($reports);
 	}
 
 	public function formRegister(){
