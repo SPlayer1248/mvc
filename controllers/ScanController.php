@@ -11,7 +11,7 @@ class ScanController
 	{
 		if(isset($_GET['ip']) && !empty($_GET['ip'])){
 			$ip = $_GET['ip'];
-			$cmd = 'nmap -v -O -oG '.$ip;
+			$cmd = 'nmap -v -O -oX '.$ip;
 			shell_exec($cmd);
 			echo file_get_contents($ip);
 		}
