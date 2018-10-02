@@ -1,4 +1,4 @@
-<?php 
+<?php if ( ! defined('PATH_CONTROLLER')) die ('Bad request!');
 
 /**
  * 
@@ -11,9 +11,14 @@ class ScanController
 	{
 		if(isset($_GET['ip']) && !empty($_GET['ip'])){
 			$ip = $_GET['ip'];
-			$cmd = 'nmap -v -O -oX '.$ip;
-			shell_exec($cmd);
-			echo file_get_contents($ip);
+			$filename = $ip.'.xml';
+			$cmd = 'nmap -v -O -oX '.$filename.' '.$ip;
+			// echo $cmd;
+			// shell_exec($cmd);
+			// echo $filename;
+			$scanModel = new ScanModel();
+			$scanModel->getDataFromFile($filename);
+			// echo file_get_contents($filename);
 		}
 	}
 

@@ -1,4 +1,4 @@
-<?php 
+<?php if ( ! defined('PATH_CONTROLLER')) die ('Bad request!');
 
 require_once('models/UserModel.php');
 class UserController {
@@ -32,6 +32,10 @@ class UserController {
 				$_SESSION['user'] = $user['username'];
             	$_SESSION['admin'] = $user['admin'];
             	$_SESSION['loggedin'] = true;
+            	if($_SESSION['admin']){
+            		header('location: index.php?controller=home&action=manager');
+					exit();
+            	}
 				header('location: index.php?controller=server&action=listServers');
 				exit();
 			} else {
@@ -48,5 +52,6 @@ class UserController {
 		header('location: index.php?action=login');
 		exit();
 	}
+
 }
 ?>

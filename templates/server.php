@@ -16,16 +16,17 @@ if(!$_SESSION['loggedin']){
 	<thead>
 		<tr>
 			<th>Servers list</th>
-			<th><a href="index.php?controller=scan&action=scanAll">Scan all</th>
 			<th><a href="index.php?controller=server&action=add">Add</th>
 
 		</tr>
 	</thead>
 	<tbody>
+		<?php if($servers): ?>
 		<tr>
 			<td>IP </td>
 			<td>Owner</td>
 		</tr>
+
 		<?php foreach ($servers as $server):?>
 		<tr>
 			<td><?php echo $server['ip'] ?> </td>
@@ -35,6 +36,8 @@ if(!$_SESSION['loggedin']){
 			<td><a href="index.php?controller=server&action=delete&ip=<?php echo $server['ip'] ?>">Delete</a></td>
 		</tr>
 	<?php endforeach; ?>
+	<tr><td><a href="index.php?controller=scan&action=scanAll">Scan all</a></td></tr>
+	<?php endif;?>
 	</tbody>
 </table>
 </body>

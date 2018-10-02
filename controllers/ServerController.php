@@ -1,9 +1,9 @@
-<?php 
-
+<?php if ( ! defined('PATH_CONTROLLER')) die ('Bad request!');
 require_once('models/ServerModel.php');
 class ServerController {
 
 	public function listAll(){
+		
 		$serverModel = new ServerModel();
 		$servers = $serverModel->listAll();
 		
@@ -20,6 +20,11 @@ class ServerController {
 		$servers = $serverModel->listServers($user);
 		
 		if($servers){
+			require_once('views/ServerView.php');
+			$serverView = new ServerView();
+			$serverView->listServer($servers);
+		} else {
+			$servers = '';
 			require_once('views/ServerView.php');
 			$serverView = new ServerView();
 			$serverView->listServer($servers);

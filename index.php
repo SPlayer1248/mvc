@@ -3,41 +3,37 @@ session_start();
 define('PATH_CONTROLLER',__DIR__.'/controllers/');
 define('PATH_APPLICATION',__DIR__.'/site');
 
-$controller = isset($_GET['controller']) ? ucfirst(strtolower($_GET['controller'])).'Controller' : 'UserController' ;
+if(isset($_GET['controller']) && ucfirst(strtolower($_GET['controller'])) === 'User' && isset($_GET['action']) && $_GET['action'] === 'register'){
+	$controller = 'UserController' ;
 
-$action = isset($_GET['action']) ? $_GET['action'] : 'login';
+	$action = 'register';
+	require_once(PATH_CONTROLLER.$controller.'.php');
+	$controller = new $controller();
+	$controller->$action();
+}
 
-require_once(PATH_CONTROLLER.$controller.'.php');
-$controller = new $controller();
-$controller->$action();
+else if(!isset($_SESSION['loggedin']) && empty($_SESSION['loggedin'])){
+	$controller = 'UserController' ;
 
-// $resultController = new ResultController();
-// require_once('controllers/UserController.php');
-// $userController = new UserController();
-// $userController->$action();
+	$action = 'login';
 
-// if($action == 'list'){
-// 	$resultController->getResult();	
-// }
+	require_once(PATH_CONTROLLER.$controller.'.php');
+	$controller = new $controller();
+	$controller->$action();
+} else {
+	$controller = isset($_GET['controller']) ? ucfirst(strtolower($_GET['controller'])).'Controller' : 'UserController' ;
 
-// if($action == 'add'){
-// 	$resultController->formRegister();	
-// }
+	$action = isset($_GET['action']) ? $_GET['action'] : 'login';
 
-// if($action == 'doAdd'){
+	require_once(PATH_CONTROLLER.$controller.'.php');
+	$controller = new $controller();
+	$controller->$action();
+}
 
-// 	$resultController->doAdd();
-// }
 
-// if($action == 'login'){
-// 	$userController->formLogin();
-// }
 
-// if($action == 'doLogin'){
-// 	$userController->login();
-// }
 
-// https://www.youtube.com/watch?v=H2L-x-jjM8Y&index=12&list=PLR8iDMjPjgZ1zwjFApMJQknRla1nvEioy
+
 
 
  ?>

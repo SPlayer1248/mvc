@@ -1,4 +1,7 @@
 <?php 
+if ( ! defined('PATH_CONTROLLER')) die ('Bad request!');
+
+
 
 require_once('models/HomeModel.php');
 class HomeController {
@@ -12,6 +15,10 @@ class HomeController {
 			$homeView = new HomeView();
 			$homeView->listAllServers($servers);
 		}
+	}
+
+	public function manager(){
+		
 	}
 }
 ?>

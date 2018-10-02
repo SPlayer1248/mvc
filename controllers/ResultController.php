@@ -1,5 +1,4 @@
-<?php  
-
+<?php  if ( ! defined('PATH_CONTROLLER')) die ('Bad request!');
 class ResultController {
 	public function getResult(){
 		require_once('models/ResultModel.php');
